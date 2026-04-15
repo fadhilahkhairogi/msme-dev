@@ -177,7 +177,7 @@
         </div>
 
         <div class="row">
-            {{-- Tabel Peringatan Restok --}}
+            {{-- Tabel   restok --}}
             <div class="col-md-6">
                 <div class="card card-danger shadow-sm">
                     <div class="card-header">

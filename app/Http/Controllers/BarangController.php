@@ -139,7 +139,7 @@ class BarangController extends Controller
 
     public function edit(Barang $Barang)
     {
-        $categories = ['a', 'b'];
+        // $categories = ['a', 'b'];
         return view('produk.barang.edit', compact('Barang', 'categories'));
     }
 
