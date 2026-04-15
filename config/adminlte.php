@@ -260,6 +260,7 @@ return [
     'dashboard_url' => 'home',
     'logout_url' => 'logout',
     'login_url' => 'login',
+    'barang_url' => 'barang',
     'register_url' => 'register',
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
@@ -337,6 +338,36 @@ return [
             'text' => 'change_password',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
+        ],
+        [
+            'text' => 'MASTER DATA',
+            'icon' => '',
+            'submenu' => [
+                [
+                    'text' => 'Barang',
+                    'icon' => 'fas fa-fw fa-boxes',
+                    'url' => 'produk',
+                ],
+                [
+                    'text' => 'Supplier',
+                    'icon' => 'fas fa-fw fa-truck',
+                    'url' => 'suppliers_url',
+
+                ],
+
+            ],
+        ],
+        [
+            'text' => 'LAPORAN',
+            'icon' => '',
+            'submenu' => [
+                [
+                    'text' => 'Lap. Stok Barang',
+                    'icon' => 'fas fa-fw fa-file-download',
+                    'url' => 'laporan-stok',
+                ],
+
+            ],
         ],
         [
             'text' => 'multilevel',
@@ -465,7 +496,8 @@ return [
             ],
         ],
         'Chartjs' => [
-            'active' => false,
+            'active' => true, //librarynya dipake di view produk 
+
             'files' => [
                 [
                     'type' => 'js',
