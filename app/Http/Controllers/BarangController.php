@@ -40,9 +40,9 @@ class BarangController extends Controller
         }
 
         //debugging hapus cache (cache agar loading cepet)
-        Cache::forget('produk.barang.dashboard.data');
+        // Cache::forget('produk.barang.dashboard.data');
 
-        $daftarBarang = $query->latest()->paginate(2)->withQueryString();
+        $daftarBarang = $query->latest()->paginate(10)->withQueryString();
 
         $dataDashboard = Cache::remember('produk.barang.dashboard.data', 600, function () use ($daftarBarang) {
 
@@ -54,14 +54,14 @@ class BarangController extends Controller
                 ->get()
                 ->toArray();
 
-            // Persenn kesehatan stok (cukupp)
+            // persenn kesehatan stok (udah cukup)
             $banyakBarang = Barang::count();
             $BarangCukup = Barang::whereColumn('stok', '>', 'min_stok')->count();
             $persentaseKesehatanStok = $banyakBarang > 0 ? round(($BarangCukup / $banyakBarang) * 100) : 0;
 
             // Buat dashboard yang bagian atas 
             $totalHargaBeli = Barang::sum(DB::raw('harga_pokok * stok'));
-            // $totalHargaBeli = 0;
+            // $totalHargaBeli = 0;  //tes
             $totalHargaJual = Barang::sum(DB::raw('harga_jual * stok'));
             // $totalHargaJual = -1;
             $prakiraanKeuntungan = $totalHargaBeli > 0 ? (($totalHargaJual - $totalHargaBeli) / $totalHargaBeli) * 100 : 0;
@@ -120,6 +120,7 @@ class BarangController extends Controller
     {
         $validated = $request->validate([
             'nama'        => 'required|string|max:255',
+            'satuan' => 'string|max:255',
             'kode'        => 'required|string|max:255',
             'kategori'     => 'required|string|max:255',
             'harga_pokok'   => 'required|numeric|min:0',
@@ -128,33 +129,35 @@ class BarangController extends Controller
             'min_stok'   => 'required|integer|min:0',
         ]);
 
+        // dump($validated);
         Barang::create($validated);
 
-        // Clear Cache
         Cache::forget('produk.barang.dashboard.data');
 
         return redirect()->route('produk.barang.index')
             ->with('Sukses', 'Barang berhasil ditambahkan.');
     }
 
-    public function edit(Barang $Barang)
+    public function edit(Barang $barang)
     {
-        // $categories = ['a', 'b'];
-        return view('produk.barang.edit', compact('Barang', 'categories'));
+
+        return view('produk.barang.edit', compact('barang'));
     }
 
     public function update(Request $request, Barang $Barang)
     {
         $validated = $request->validate([
             'nama'        => 'required|string|max:255',
-            'kategori_id' => 'required|exists:categories,id',
-            'barcode'     => 'nullable|string|max:255',
-            'harga_pokok'   => 'required|numeric|min:0',
+            'satuan' => 'string|max:255',
+            'kode'        => 'required|string|max:255',
+            'kategori'     => 'required|string|max:255',
+            // 'harga_pokok'   => 'required|numeric|min:0',
             'harga_jual'  => 'required|numeric|min:0',
             'stok'       => 'required|integer|min:0',
             'min_stok'   => 'required|integer|min:0',
         ]);
 
+        
         $Barang->update($validated);
 
         // Kosongin cachenya
