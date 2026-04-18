@@ -13,7 +13,6 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            /* Menghilangkan jarak antar garis tabel */
             margin-top: 20px;
         }
 
@@ -31,6 +30,10 @@
         h2 {
             text-align: center;
         }
+
+        .table-bot {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 
@@ -43,20 +46,22 @@
         <table>
             <thead>
                 <th>No</th>
-                <th>ID Barang</th>
-                <th>Jenis</th>
+                <th>ID</th>
+                <th>Kode</th>
+                <th>Nama</th>
                 <th>Kategori</th>
-                <th>Harga Beli</th>
+                <th>HPP</th>
                 <th>Harga Jual</th>
                 <th>Stok</th>
-                <th>Stok Minimum</th>
+                <th>Min. Stok</th>
             </thead>
             @php $nomor_barang =0; @endphp
             @foreach ($daftar_Barang as $produk)
                 @php $nomor_barang++; @endphp
                 <tr>
-                    <td>{{ $nomor_barang }}</td>
+                    <td><b>{{ $nomor_barang }}</b></td>
                     <td>{{ $produk->id }}</td>
+                    <td>{{ $produk->kode }}</td>
                     <td>{{ $produk->nama }}</td>
                     <td>{{ $produk->kategori }}</td>
                     <td>{{ $produk->harga_pokok }}</td>
@@ -65,8 +70,8 @@
                     <td>{{ $produk->min_stok }}</td>
                 </tr>
             @endforeach
-            <tr>
-                <td colspan ="4"><b>TOTAL</b></td>
+            <tr class="table-bot">
+                <td style="text-align:center;" colspan ="5"><b>TOTAL</b></td>
                 <td><b>{{ $totalHargaBeli }}</b></td>
                 <td><b>{{ $totalHargaJual }}</b></td>
                 <td><b>{{ $totalStok }}</b></td>

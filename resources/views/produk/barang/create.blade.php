@@ -35,6 +35,21 @@
                     <form action="{{ route('produk.barang.store') }}" method="POST">
                         @csrf
                         <div class="card-body">
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Kode Barang</label>
+                                        <input type="text" name="kode"
+                                            class="form-control @error('kode') is-invalid @enderror"
+                                            placeholder="Masukkan kode barang" value="{{ old('kode') }}" required>
+                                        @error('kode')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label>Nama Produk</label>
                                 <input type="text" name="nama"
@@ -73,7 +88,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Harga Beli</label>
+                                        <label>HPP</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Rp</span>
@@ -129,19 +144,35 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Satuan (contoh: Pcs, Box, Kg)</label>
+                                        <input type="text" name="satuan"
+                                            class="form-control @error('satuan') is-invalid @enderror"
+                                            placeholder="Masukkan satuan" value="{{ old('satuan') }}" required>
+                                        @error('satuan')
+                                            <span class="invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="card-footer text-right">
-                            <a href="{{ route('produk.barang.index') }}" class="btn btn-default mr-1">
-                                <i class="fas fa-times mr-1"></i> Batal
-                            </a>
-                            <button type="submit" class="btn btn-success">
-                                <i class="fas fa-save mr-1"></i> Simpan Produk
-                            </button>
-                        </div>
-                    </form>
                 </div>
+
+                <div class="card-footer text-right">
+                    <a href="{{ route('produk.barang.index') }}" class="btn btn-default mr-1">
+                        <i class="fas fa-times mr-1"></i> Batal
+                    </a>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save mr-1"></i> Simpan Produk
+                    </button>
+                </div>
+                </form>
             </div>
         </div>
+    </div>
     </div>
 @stop

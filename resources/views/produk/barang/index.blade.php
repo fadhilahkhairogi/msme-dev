@@ -54,7 +54,7 @@
                 <div class="info-box shadow-sm">
                     <span class="info-box-icon bg-info elevation-1"><i class="fas fa-wallet"></i></span>
                     <div class="info-box-content">
-                        <span class="info-box-text">Total Modal (Beli)</span>
+                        <span class="info-box-text">Total HPP (Modal)</span>
                         <span class="info-box-number">Rp
                             {{ number_format($dashboard['totalHargaBeli'], 0, ',', '.') }}</span>
                     </div>
@@ -113,10 +113,11 @@
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 50px;">No.</th>
+                            <th>Kode</th>
                             <th>Nama Barang</th>
                             <th>Kategori</th>
                             {{-- <th>Barcode</th> --}}
-                            <th>Harga Beli</th>
+                            <th>HPP</th>
                             <th>Harga Jual</th>
                             <th class="text-center">Stok</th>
                             <th class="text-center">Min Stok</th>
@@ -127,6 +128,7 @@
                         @forelse($daftarBarang as $index => $Barang)
                             <tr>
                                 <td class="text-center align-middle">{{ $daftarBarang->firstItem() + $index }}.</td>
+                                <td class="align-middle font-weight-bold">{{ $Barang->kode }}</td>
                                 <td class="align-middle font-weight-bold">{{ $Barang->nama }}</td>
                                 <td class="align-middle">{{ $Barang->kategori ?? '-' }}</td>
                                 {{-- <td class="align-middle">{{ $Barang->barcode ?? '-' }}</td> --}}
@@ -268,6 +270,27 @@
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-view" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h4 class="modal-title"><i class="fas fa-circle-info mr-2"></i> Detail Barang</h4>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash mr-1"></i> Ya, Hapus
+                        Data</button>
+                </div>
+            </div>
         </div>
     </div>
 @stop
