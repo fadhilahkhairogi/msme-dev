@@ -27,4 +27,10 @@ class Barang extends Model
             'stok' => 'integer',
         ];
     }
+
+    public function historiStoks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(HistoriStok::class);
+    }
 }
+
