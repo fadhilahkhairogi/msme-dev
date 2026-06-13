@@ -1,6 +1,5 @@
 Aplikasi pencatatan inventori UMKM tanpa invoice adalah aplikasi yang berfungsi untuk mencatat transaksi penjualan secara langsung (direct sales recording) tanpa menghasilkan dokumen tagihan (invoice), tetapi tetap melakukan pencatatan data transaksi, pengurangan stok, dan penyusunan laporan penjualan.
 
-
 # Cara menjalankan projek
 
 Cara untuk menyalin repositori ke lokal, instalasi dependensi, dan konfigurasi database awal agar aplikasi dapat berjalan. Dilakukan sebelum pertama kali menjalankan aplikasi
