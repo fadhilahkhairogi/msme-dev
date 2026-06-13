@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\HistoriStok;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -157,10 +158,23 @@ class BarangController extends Controller
             'min_stok'   => 'required|integer|min:0',
         ]);
 
-        
+        $stokSebelumnya = $Barang->stok;
+        $stokBaru = (int) $validated['stok'];
+
         $Barang->update($validated);
 
-        // Kosongin cachenya
+        // Catat ke histori jika ada perubahan stok
+        if ($stokBaru !== $stokSebelumnya) {
+            $selisih = $stokBaru - $stokSebelumnya;
+            HistoriStok::create([
+                'barang_id' => $Barang->id,
+                'selisih_stok' => $selisih,
+                'jenis' => $selisih >= 0 ? 'Barang masuk' : 'Barang keluar',
+                'edited_at' => now(),
+            ]);
+        }
+
+        // Hapus cache dashboard
         Cache::forget('produk.barang.dashboard.data');
 
         return redirect()->route('produk.barang.index')

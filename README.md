@@ -1,6 +1,5 @@
 Aplikasi pencatatan inventori UMKM tanpa invoice adalah aplikasi yang berfungsi untuk mencatat transaksi penjualan secara langsung (direct sales recording) tanpa menghasilkan dokumen tagihan (invoice), tetapi tetap melakukan pencatatan data transaksi, pengurangan stok, dan penyusunan laporan penjualan.
 
-
 # Cara menjalankan projek
 
 Cara untuk menyalin repositori ke lokal, instalasi dependensi, dan konfigurasi database awal agar aplikasi dapat berjalan. Dilakukan sebelum pertama kali menjalankan aplikasi
@@ -63,7 +62,16 @@ php artisan migrate:refresh
 
 php artisan db:seed
 
-php artisan serve
+php artisan serve --host 0.0.0.0
 ```
 
-i. buka aplikasi pada link “http://localhost:8000/produk”
+i. buka aplikasi web pada link “http://localhost:8000/produk”
+
+j. Jalankan perintah berikut sebelum menjalankan aplikasi mobile
+```bash
+cd mobile
+
+flutter pub get
+```
+
+k. buka Aplikasi mobile yang terletak di "./Mobile" pada Android Atudio, lalu jalankan
