@@ -68,4 +68,4 @@ php artisan serve --host 0.0.0.0
 
 i. buka aplikasi web pada link “http://localhost:8000/produk”
 
-j. buka aplikasi mobile pada android studio
+j. buka Aplikasi mobile yang terletak di "./Mobile" pada Android Atudio
