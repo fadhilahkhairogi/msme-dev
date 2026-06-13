@@ -67,4 +67,11 @@ php artisan serve --host 0.0.0.0
 
 i. buka aplikasi web pada link “http://localhost:8000/produk”
 
-j. buka Aplikasi mobile yang terletak di "./Mobile" pada Android Atudio
+j. Jalankan perintah berikut sebelum menjalankan aplikasi mobile
+```bash
+cd mobile
+
+flutter pub get
+```
+
+k. buka Aplikasi mobile yang terletak di "./Mobile" pada Android Atudio, lalu jalankan
