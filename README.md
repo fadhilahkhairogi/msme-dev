@@ -63,7 +63,9 @@ php artisan migrate:refresh
 
 php artisan db:seed
 
-php artisan serve
+php artisan serve --host 0.0.0.0
 ```
 
-i. buka aplikasi pada link “http://localhost:8000/produk”
+i. buka aplikasi web pada link “http://localhost:8000/produk”
+
+j. buka aplikasi mobile pada android studio
